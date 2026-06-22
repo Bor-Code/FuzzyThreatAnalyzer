@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="FuzzyThreatAnalyzer.Cli/FuzzyThreatAnalyzer.Cli.csproj" />
+  <Project Path="FuzzyThreatAnalyzer.Core/FuzzyThreatAnalyzer.Core.csproj" />
+</Solution>
