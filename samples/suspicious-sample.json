@@ -1,0 +1,9 @@
+﻿{
+  "sampleName": "suspicious-sample",
+  "staticScore": 50,
+  "dynamicScore": 60,
+  "networkScore": 40,
+  "persistenceScore": 30,
+  "obfuscationScore": 20,
+  "reputationRiskScore": 10
+}

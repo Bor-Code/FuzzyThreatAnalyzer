@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Text.Json;
 using FuzzyThreatAnalyzer.Core.Engine;
 using FuzzyThreatAnalyzer.Core.Models;
 using FuzzyThreatAnalyzer.Reporting;
@@ -6,16 +7,9 @@ using FuzzyThreatAnalyzer.Reporting;
 Console.WriteLine("FuzzyThreatAnalyzer");
 Console.WriteLine("-------------------");
 
-var input = new ThreatAnalysisInput
-{
-    SampleName = ReadText("Sample name"),
-    StaticScore = ReadScore("Static score"),
-    DynamicScore = ReadScore("Dynamic score"),
-    NetworkScore = ReadScore("Network score"),
-    PersistenceScore = ReadScore("Persistence score"),
-    ObfuscationScore = ReadScore("Obfuscation score"),
-    ReputationRiskScore = ReadScore("Reputation risk score")
-};
+var input = args.Length > 0
+    ? LoadInputFromJson(args[0])
+    : ReadInputFromConsole();
 
 var engine = new FuzzyThreatInferenceEngine();
 var result = engine.Analyze(input);
@@ -62,6 +56,44 @@ Console.WriteLine("Report Export");
 Console.WriteLine("-------------------");
 Console.WriteLine($"Markdown: {Path.Combine(reportsDirectory, "threat-report.md")}");
 Console.WriteLine($"CSV: {Path.Combine(reportsDirectory, "threat-metrics.csv")}");
+
+static ThreatAnalysisInput ReadInputFromConsole()
+{
+    return new ThreatAnalysisInput
+    {
+        SampleName = ReadText("Sample name"),
+        StaticScore = ReadScore("Static score"),
+        DynamicScore = ReadScore("Dynamic score"),
+        NetworkScore = ReadScore("Network score"),
+        PersistenceScore = ReadScore("Persistence score"),
+        ObfuscationScore = ReadScore("Obfuscation score"),
+        ReputationRiskScore = ReadScore("Reputation risk score")
+    };
+}
+
+static ThreatAnalysisInput LoadInputFromJson(string filePath)
+{
+    if (!File.Exists(filePath))
+    {
+        throw new FileNotFoundException("Input JSON file was not found.", filePath);
+    }
+
+    var json = File.ReadAllText(filePath);
+
+    var options = new JsonSerializerOptions
+    {
+        PropertyNameCaseInsensitive = true
+    };
+
+    var input = JsonSerializer.Deserialize<ThreatAnalysisInput>(json, options);
+
+    if (input is null)
+    {
+        throw new InvalidOperationException("Input JSON file could not be parsed.");
+    }
+
+    return input;
+}
 
 static string ReadText(string label)
 {
