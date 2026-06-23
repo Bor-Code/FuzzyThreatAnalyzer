@@ -1,0 +1,280 @@
+﻿<Window x:Class="FuzzyThreatAnalyzer.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FuzzyThreatAnalyzer Dashboard"
+        Height="760"
+        Width="1180"
+        WindowStartupLocation="CenterScreen"
+        Background="#0F172A">
+
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#E5E7EB"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Margin" Value="0,4,0,10"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="Background" Value="#111827"/>
+            <Setter Property="Foreground" Value="#F9FAFB"/>
+            <Setter Property="BorderBrush" Value="#334155"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Margin" Value="0,8,0,0"/>
+            <Setter Property="Background" Value="#2563EB"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="#111827"/>
+            <Setter Property="Foreground" Value="#E5E7EB"/>
+            <Setter Property="BorderBrush" Value="#334155"/>
+            <Setter Property="RowBackground" Value="#111827"/>
+            <Setter Property="AlternatingRowBackground" Value="#1E293B"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="0,0,0,18">
+            <TextBlock Text="FuzzyThreatAnalyzer"
+                       FontSize="30"
+                       FontWeight="Bold"
+                       Foreground="#F8FAFC"/>
+
+            <TextBlock Text="Bulanık mantık tabanlı açıklanabilir tehdit analiz paneli"
+                       FontSize="15"
+                       Foreground="#94A3B8"
+                       Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="330"/>
+                <ColumnDefinition Width="18"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0"
+                    Background="#1E293B"
+                    CornerRadius="14"
+                    Padding="18">
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock Text="Analiz Girdileri"
+                                   FontSize="20"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,14"/>
+
+                        <TextBlock Text="Sample name"/>
+                        <TextBox x:Name="SampleNameTextBox" Text="demo-malware"/>
+
+                        <TextBlock Text="Static score"/>
+                        <TextBox x:Name="StaticScoreTextBox" Text="70"/>
+
+                        <TextBlock Text="Dynamic score"/>
+                        <TextBox x:Name="DynamicScoreTextBox" Text="85"/>
+
+                        <TextBlock Text="Network score"/>
+                        <TextBox x:Name="NetworkScoreTextBox" Text="65"/>
+
+                        <TextBlock Text="Persistence score"/>
+                        <TextBox x:Name="PersistenceScoreTextBox" Text="80"/>
+
+                        <TextBlock Text="Obfuscation score"/>
+                        <TextBox x:Name="ObfuscationScoreTextBox" Text="75"/>
+
+                        <TextBlock Text="Reputation risk score"/>
+                        <TextBox x:Name="ReputationRiskScoreTextBox" Text="70"/>
+
+                        <Button Content="Analiz Et"
+                                Click="AnalyzeButton_Click"/>
+
+                        <Button Content="Raporu Dışa Aktar"
+                                Background="#0F766E"
+                                Click="ExportReportButton_Click"/>
+
+                        <TextBlock Text="Not: Her skor 0 ile 100 arasında olmalıdır."
+                                   Foreground="#94A3B8"
+                                   TextWrapping="Wrap"
+                                   Margin="0,14,0,0"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="170"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0"
+                        Background="#1E293B"
+                        CornerRadius="14"
+                        Padding="18"
+                        Margin="0,0,0,18">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="220"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel>
+                            <TextBlock Text="Risk Sonucu"
+                                       FontSize="18"
+                                       FontWeight="Bold"/>
+
+                            <TextBlock x:Name="RiskScoreTextBlock"
+                                       Text="0.00/100"
+                                       FontSize="34"
+                                       FontWeight="Bold"
+                                       Foreground="#F8FAFC"
+                                       Margin="0,8,0,0"/>
+
+                            <TextBlock x:Name="RiskLevelTextBlock"
+                                       Text="Henüz analiz yok"
+                                       FontSize="18"
+                                       Foreground="#38BDF8"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1"
+                                    VerticalAlignment="Center">
+
+                            <ProgressBar x:Name="RiskProgressBar"
+                                         Minimum="0"
+                                         Maximum="100"
+                                         Height="24"
+                                         Value="0"/>
+
+                            <TextBlock x:Name="TopExplanationTextBlock"
+                                       Text="Analiz sonucu burada özetlenecek."
+                                       Foreground="#CBD5E1"
+                                       TextWrapping="Wrap"
+                                       Margin="0,12,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="1"
+                        Background="#1E293B"
+                        CornerRadius="14"
+                        Padding="18"
+                        Margin="0,0,0,18">
+
+                    <StackPanel>
+                        <TextBlock Text="Girdi Skor Grafiği"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,10"/>
+
+                        <ItemsControl x:Name="MetricBarsItemsControl">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="140"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="70"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Text="{Binding Name}"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="#CBD5E1"/>
+
+                                        <ProgressBar Grid.Column="1"
+                                                     Minimum="0"
+                                                     Maximum="100"
+                                                     Height="18"
+                                                     Value="{Binding Score}"/>
+
+                                        <TextBlock Grid.Column="2"
+                                                   Text="{Binding ScoreText}"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="#CBD5E1"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="18"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0"
+                            Background="#1E293B"
+                            CornerRadius="14"
+                            Padding="18">
+
+                        <StackPanel>
+                            <TextBlock Text="Üyelik Dereceleri"
+                                       FontSize="18"
+                                       FontWeight="Bold"
+                                       Margin="0,0,0,10"/>
+
+                            <DataGrid x:Name="MembershipsGrid"
+                                      Height="330">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Metric" Binding="{Binding Metric}" Width="*"/>
+                                    <DataGridTextColumn Header="Low" Binding="{Binding LowText}" Width="80"/>
+                                    <DataGridTextColumn Header="Medium" Binding="{Binding MediumText}" Width="90"/>
+                                    <DataGridTextColumn Header="High" Binding="{Binding HighText}" Width="80"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="2"
+                            Background="#1E293B"
+                            CornerRadius="14"
+                            Padding="18">
+
+                        <StackPanel>
+                            <TextBlock Text="Çalışan Kurallar"
+                                       FontSize="18"
+                                       FontWeight="Bold"
+                                       Margin="0,0,0,10"/>
+
+                            <DataGrid x:Name="RulesGrid"
+                                      Height="330">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Rule" Binding="{Binding RuleName}" Width="*"/>
+                                    <DataGridTextColumn Header="Output" Binding="{Binding OutputSet}" Width="100"/>
+                                    <DataGridTextColumn Header="Strength" Binding="{Binding StrengthText}" Width="90"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
