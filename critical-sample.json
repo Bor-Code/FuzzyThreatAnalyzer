@@ -1,0 +1,9 @@
+{
+  "sampleName": "critical-sample",
+  "staticScore": 85,
+  "dynamicScore": 90,
+  "networkScore": 80,
+  "persistenceScore": 88,
+  "obfuscationScore": 75,
+  "reputationRiskScore": 90
+}

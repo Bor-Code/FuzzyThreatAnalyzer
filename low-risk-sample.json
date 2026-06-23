@@ -1,0 +1,9 @@
+{
+  "sampleName": "low-risk-sample",
+  "staticScore": 15,
+  "dynamicScore": 10,
+  "networkScore": 12,
+  "persistenceScore": 8,
+  "obfuscationScore": 5,
+  "reputationRiskScore": 10
+}
