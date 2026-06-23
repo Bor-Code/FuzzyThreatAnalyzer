@@ -10,4 +10,5 @@
   <Project Path="FuzzyThreatAnalyzer.Cli/FuzzyThreatAnalyzer.Cli.csproj" />
   <Project Path="FuzzyThreatAnalyzer.Core/FuzzyThreatAnalyzer.Core.csproj" />
   <Project Path="FuzzyThreatAnalyzer.Reporting/FuzzyThreatAnalyzer.Reporting.csproj" Id="35e193aa-427c-4610-b1a3-96bc4aca9f2b" />
+  <Project Path="FuzzyThreatAnalyzer.Tests/FuzzyThreatAnalyzer.Tests.csproj" Id="267d480f-77ae-475a-8160-c6c77293d674" />
 </Solution>
