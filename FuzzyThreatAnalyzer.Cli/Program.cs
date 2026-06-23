@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using FuzzyThreatAnalyzer.Core.Engine;
 using FuzzyThreatAnalyzer.Core.Models;
+using FuzzyThreatAnalyzer.Reporting;
 
 Console.WriteLine("FuzzyThreatAnalyzer");
 Console.WriteLine("-------------------");
@@ -50,6 +51,17 @@ foreach (var rule in result.ActivatedRules)
     Console.WriteLine($"  Output: {rule.OutputSet}");
     Console.WriteLine($"  Strength: {rule.Strength:F2}");
 }
+
+var reportsDirectory = Path.Combine(AppContext.BaseDirectory, "reports");
+var exporter = new ThreatReportExporter();
+
+exporter.Export(reportsDirectory, input, result);
+
+Console.WriteLine();
+Console.WriteLine("Report Export");
+Console.WriteLine("-------------------");
+Console.WriteLine($"Markdown: {Path.Combine(reportsDirectory, "threat-report.md")}");
+Console.WriteLine($"CSV: {Path.Combine(reportsDirectory, "threat-metrics.csv")}");
 
 static string ReadText(string label)
 {
