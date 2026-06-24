@@ -370,3 +370,9 @@ Planned improvements:
 This project is designed for educational and portfolio purposes.
 
 It does not replace professional malware analysis tools, sandbox systems, EDR products, or threat intelligence platforms.
+
+---
+
+> [!WARNING]
+> This project was developed with the assistance of artificial intelligence. I'm open to your ideas, suggestions, and feedback.
+> 📧 non.mrbora@gmail.com
