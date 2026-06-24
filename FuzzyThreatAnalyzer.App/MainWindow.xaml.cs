@@ -58,7 +58,7 @@ public partial class MainWindow : Window
         {
             MessageBox.Show(
                 ex.Message,
-                "Analiz hatası",
+                "Analysis Error",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
         }
@@ -85,8 +85,8 @@ public partial class MainWindow : Window
             exporter.Export(reportsDirectory, lastInput, lastResult);
 
             MessageBox.Show(
-                $"Raporlar oluşturuldu:\n\n{reportsDirectory}",
-                "Rapor dışa aktarıldı",
+                $"Reports were generated:\n\n{reportsDirectory}",
+                "Report Exported",
                 MessageBoxButton.OK,
                 MessageBoxImage.Information);
         }
@@ -94,7 +94,7 @@ public partial class MainWindow : Window
         {
             MessageBox.Show(
                 ex.Message,
-                "Rapor hatası",
+                "Report Error",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
         }
@@ -123,12 +123,12 @@ public partial class MainWindow : Window
 
         if (!double.TryParse(normalized, NumberStyles.Float, CultureInfo.InvariantCulture, out var value))
         {
-            throw new InvalidOperationException($"{fieldName} sayı olmalıdır.");
+            throw new InvalidOperationException($"{fieldName} must be a number.");
         }
 
         if (value < 0 || value > 100)
         {
-            throw new InvalidOperationException($"{fieldName} 0 ile 100 arasında olmalıdır.");
+            throw new InvalidOperationException($"{fieldName} must be between 0 and 100.");
         }
 
         return value;
@@ -156,10 +156,10 @@ public partial class MainWindow : Window
 
         if (strongestRule is null)
         {
-            return "Hiçbir kural aktifleşmedi. Risk skoru düşük kabul edildi.";
+            return "No fuzzy rule was activated. The risk score is considered low.";
         }
 
-        return $"En güçlü kural: {strongestRule.RuleName} | Güç: {strongestRule.Strength:F2}";
+        return $"Strongest rule: {strongestRule.RuleName} | Strength: {strongestRule.Strength:F2}";
     }
 
     private void UpdateInputScoreChart(ThreatAnalysisInput input)

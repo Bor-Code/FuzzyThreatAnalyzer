@@ -2,6 +2,7 @@
   <Folder Name="/docs/">
     <File Path="threat-model.md" />
   </Folder>
+  <Folder Name="/docs/screenshots/" />
   <Folder Name="/samples/">
     <File Path="critical-sample.json" />
     <File Path="low-risk-sample.json" />
