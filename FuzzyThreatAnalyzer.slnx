@@ -7,7 +7,9 @@
     <File Path="low-risk-sample.json" />
     <File Path="suspicious-sample.json" />
   </Folder>
-  <Project Path="FuzzyThreatAnalyzer.App/FuzzyThreatAnalyzer.App.csproj" Id="ce8dbaf1-7378-452d-9ede-018a2d12d627" />
+  <Project Path="FuzzyThreatAnalyzer.App/FuzzyThreatAnalyzer.App.csproj" Id="ce8dbaf1-7378-452d-9ede-018a2d12d627">
+    <Build Solution="Debug|*" Project="false" />
+  </Project>
   <Project Path="FuzzyThreatAnalyzer.Cli/FuzzyThreatAnalyzer.Cli.csproj" />
   <Project Path="FuzzyThreatAnalyzer.Core/FuzzyThreatAnalyzer.Core.csproj" />
   <Project Path="FuzzyThreatAnalyzer.Reporting/FuzzyThreatAnalyzer.Reporting.csproj" Id="35e193aa-427c-4610-b1a3-96bc4aca9f2b" />
