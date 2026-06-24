@@ -14,7 +14,6 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
 
-        <SolidColorBrush x:Key="PageBackground" Color="#0B1120"/>
         <SolidColorBrush x:Key="SidebarBackground" Color="#111827"/>
         <SolidColorBrush x:Key="CardBackground" Color="#172033"/>
         <SolidColorBrush x:Key="CardBorder" Color="#2F3B52"/>
@@ -146,7 +145,7 @@
                            FontSize="34"
                            FontWeight="Bold"/>
 
-                <TextBlock Text="Bulanık mantık tabanlı açıklanabilir tehdit analiz ve grafik paneli"
+                <TextBlock Text="Explainable fuzzy logic-based threat analysis and visualization dashboard"
                            FontSize="15"
                            Foreground="{StaticResource SecondaryText}"
                            Margin="0,5,0,0"/>
@@ -181,7 +180,7 @@
 
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
-                        <TextBlock Text="Analiz Girdileri"
+                        <TextBlock Text="Analysis Inputs"
                                    FontSize="24"
                                    FontWeight="Bold"
                                    Margin="0,0,0,20"/>
@@ -207,10 +206,10 @@
                         <TextBlock Text="Reputation risk score" FontSize="13" Foreground="{StaticResource SecondaryText}"/>
                         <TextBox x:Name="ReputationRiskScoreTextBox" Text="70"/>
 
-                        <Button Content="Analiz Et"
+                        <Button Content="Analyze"
                                 Click="AnalyzeButton_Click"/>
 
-                        <Button Content="Raporu Dışa Aktar"
+                        <Button Content="Export Report"
                                 Background="{StaticResource AccentTeal}"
                                 Click="ExportReportButton_Click"/>
 
@@ -220,7 +219,7 @@
                                 CornerRadius="14"
                                 Padding="14"
                                 Margin="0,20,0,0">
-                            <TextBlock Text="Her skor 0 ile 100 arasında olmalıdır. Grafikler ve tablolar ayrı bölümlerde incelenir."
+                            <TextBlock Text="Each score must be between 0 and 100. Charts and tables are available in separate sections."
                                        Foreground="{StaticResource SecondaryText}"
                                        TextWrapping="Wrap"
                                        FontSize="13"/>
@@ -238,28 +237,28 @@
 
                 <UniformGrid Columns="5">
                     <RadioButton x:Name="SummaryTab"
-                                 Content="Özet"
+                                 Content="Summary"
                                  GroupName="MainNavigation"
                                  IsChecked="True"
                                  Style="{StaticResource NavRadioButtonStyle}"/>
 
                     <RadioButton x:Name="ScoresTab"
-                                 Content="Skor Grafikleri"
+                                 Content="Score Charts"
                                  GroupName="MainNavigation"
                                  Style="{StaticResource NavRadioButtonStyle}"/>
 
                     <RadioButton x:Name="RulesTab"
-                                 Content="Kural Grafiği"
+                                 Content="Rule Chart"
                                  GroupName="MainNavigation"
                                  Style="{StaticResource NavRadioButtonStyle}"/>
 
                     <RadioButton x:Name="MembershipTab"
-                                 Content="Üyelik Modeli"
+                                 Content="Membership Model"
                                  GroupName="MainNavigation"
                                  Style="{StaticResource NavRadioButtonStyle}"/>
 
                     <RadioButton x:Name="ReportTab"
-                                 Content="Rapor"
+                                 Content="Report"
                                  GroupName="MainNavigation"
                                  Style="{StaticResource NavRadioButtonStyle}"/>
                 </UniformGrid>
@@ -287,7 +286,7 @@
                                     Padding="30">
 
                                 <StackPanel>
-                                    <TextBlock Text="Risk Sonucu"
+                                    <TextBlock Text="Risk Result"
                                                FontSize="24"
                                                FontWeight="Bold"/>
 
@@ -298,7 +297,7 @@
                                                Margin="0,16,0,0"/>
 
                                     <TextBlock x:Name="RiskLevelTextBlock"
-                                               Text="Henüz analiz yok"
+                                               Text="No analysis yet"
                                                FontSize="26"
                                                Foreground="#38BDF8"/>
                                 </StackPanel>
@@ -324,7 +323,7 @@
                                                  Value="0"/>
 
                                     <TextBlock x:Name="TopExplanationTextBlock"
-                                               Text="Analiz sonucu burada özetlenecek."
+                                               Text="Analysis summary will be displayed here."
                                                Foreground="#CBD5E1"
                                                FontSize="16"
                                                TextWrapping="Wrap"
@@ -341,18 +340,18 @@
                                 Padding="30">
 
                             <StackPanel>
-                                <TextBlock Text="Dashboard Mantığı"
+                                <TextBlock Text="Dashboard Overview"
                                            FontSize="28"
                                            FontWeight="Bold"
                                            Margin="0,0,0,14"/>
 
-                                <TextBlock Text="Bu uygulama tek bir evet/hayır sonucu üretmez. Girdi skorlarını Low, Medium ve High üyeliklerine ayırır, ardından fuzzy kuralları çalıştırır ve nihai risk skorunu hesaplar."
+                                <TextBlock Text="This application does not produce a simple yes/no decision. It converts input scores into Low, Medium, and High membership degrees, then evaluates fuzzy rules and calculates the final risk score."
                                            FontSize="17"
                                            Foreground="#CBD5E1"
                                            TextWrapping="Wrap"
                                            MaxWidth="1050"/>
 
-                                <TextBlock Text="Grafikler ayrı bölümlere ayrıldı. Böylece skorlar, çalışan kurallar ve üyelik fonksiyonu modeli tek ekrana sıkışmadan incelenebilir."
+                                <TextBlock Text="Charts are separated into dedicated sections, so scores, activated rules, and membership models can be reviewed clearly without crowding the main screen."
                                            FontSize="17"
                                            Foreground="#CBD5E1"
                                            TextWrapping="Wrap"
@@ -376,11 +375,11 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel Margin="0,0,0,20">
-                                    <TextBlock Text="Girdi Skor Grafiği"
+                                    <TextBlock Text="Input Score Chart"
                                                FontSize="30"
                                                FontWeight="Bold"/>
 
-                                    <TextBlock Text="Static, Dynamic, Network, Persistence, Obfuscation ve Reputation skorlarını karşılaştırır."
+                                    <TextBlock Text="Compares Static, Dynamic, Network, Persistence, Obfuscation, and Reputation scores."
                                                Foreground="{StaticResource SecondaryText}"
                                                FontSize="15"
                                                Margin="0,5,0,0"/>
@@ -420,11 +419,11 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel Margin="0,0,0,20">
-                                    <TextBlock Text="Çalışan Kural Grafiği"
+                                    <TextBlock Text="Activated Rule Chart"
                                                FontSize="30"
                                                FontWeight="Bold"/>
 
-                                    <TextBlock Text="Aktifleşen fuzzy kurallarının güç değerlerini gösterir. Güç değeri 0 ile 1 arasındadır."
+                                    <TextBlock Text="Shows the strength values of activated fuzzy rules. Rule strength ranges from 0 to 1."
                                                Foreground="{StaticResource SecondaryText}"
                                                FontSize="15"
                                                Margin="0,5,0,0"/>
@@ -451,7 +450,7 @@
                                 Padding="24">
 
                             <StackPanel>
-                                <TextBlock Text="Çalışan Kurallar"
+                                <TextBlock Text="Activated Rules"
                                            FontSize="24"
                                            FontWeight="Bold"
                                            Margin="0,0,0,12"/>
@@ -488,11 +487,11 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel Margin="0,0,0,20">
-                                    <TextBlock Text="Üyelik Fonksiyonu Modeli"
+                                    <TextBlock Text="Membership Function Model"
                                                FontSize="30"
                                                FontWeight="Bold"/>
 
-                                    <TextBlock Text="Low, Medium ve High fuzzy kümelerinin 0-100 aralığındaki davranışını gösterir."
+                                    <TextBlock Text="Shows how Low, Medium, and High fuzzy sets behave across the 0-100 score range."
                                                Foreground="{StaticResource SecondaryText}"
                                                FontSize="15"
                                                Margin="0,5,0,0"/>
@@ -519,7 +518,7 @@
                                 Padding="24">
 
                             <StackPanel>
-                                <TextBlock Text="Üyelik Dereceleri"
+                                <TextBlock Text="Membership Degrees"
                                            FontSize="24"
                                            FontWeight="Bold"
                                            Margin="0,0,0,12"/>
@@ -545,25 +544,25 @@
                                 Padding="34">
 
                             <StackPanel>
-                                <TextBlock Text="Rapor Dışa Aktarma"
+                                <TextBlock Text="Report Export"
                                            FontSize="31"
                                            FontWeight="Bold"
                                            Margin="0,0,0,14"/>
 
-                                <TextBlock Text="Analiz sonucundan Markdown ve CSV raporları üretir. Markdown raporu GitHub üzerinde okunabilir, CSV dosyası ise grafik veya veri analizi için kullanılabilir."
+                                <TextBlock Text="Generates Markdown and CSV reports from the analysis result. The Markdown report can be viewed on GitHub, while the CSV file can be used for charts or data analysis."
                                            FontSize="17"
                                            Foreground="#CBD5E1"
                                            TextWrapping="Wrap"
                                            MaxWidth="1000"
                                            Margin="0,0,0,24"/>
 
-                                <Button Content="Markdown ve CSV Raporu Oluştur"
+                                <Button Content="Generate Markdown and CSV Report"
                                         Width="350"
                                         HorizontalAlignment="Left"
                                         Background="{StaticResource AccentTeal}"
                                         Click="ExportReportButton_Click"/>
 
-                                <TextBlock Text="Üretilen dosyalar uygulamanın çalışma dizinindeki reports klasörüne kaydedilir."
+                                <TextBlock Text="Generated files are saved into the reports folder in the application output directory."
                                            FontSize="15"
                                            Foreground="{StaticResource SecondaryText}"
                                            Margin="0,22,0,0"/>
